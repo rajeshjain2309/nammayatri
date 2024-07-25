@@ -1,0 +1,28 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Install Nix and dependencies
+    init: |
+      bash .gitpod-init.sh
+    command: |
+      cd ~/workspace/nammayatri
+      ln -sf .envrc.backend .envrc
+      direnv allow
+      nix develop .#backend
+  - name: VSCode Extensions
+    command: code --install-extension vscode-direnv
+
+ports:
+  - port: 8013
+    onOpen: open-preview
+  - port: 8015
+    onOpen: open-preview
+  - port: 8016
+    onOpen: open-preview
+  - port: 8020
+    onOpen: open-preview
+  - port: 8053
+    onOpen: open-preview
+  - port: 9996
+    onOpen: open-preview
